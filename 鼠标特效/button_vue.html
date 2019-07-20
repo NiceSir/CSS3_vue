@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>按钮特效</title>
+    <link href="css/button_vue.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="app">
+   <my-component></my-component>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
+<script>
+    Vue.component("my-component",{
+        data:function(){
+          return{
+
+          }
+        },
+        template:" <button class='login' @click='clickButton($event)'>" +
+            "<p>Login</p>" +
+            "<div class='loading'>" +
+            "<div></div><div></div><div></div>" +
+            "</div>" +
+            "<!--使用svg绘制-->" +
+            "<svg class='checkmark' width='30px' height='30px' stroke='white' fill='none'>" +
+            "<polyline points='2,10 12,18 28,2'></polyline> " +
+            "</svg>" +
+            "</button>",
+        methods:{
+            //点击事件添加class
+            clickButton:function (e){
+                var _this=this;
+                e.target.classList.toggle("active");
+                _this.timer=setInterval(function () {
+                    e.target.classList.toggle("verity");
+                },2000);
+            }
+        }
+    })
+    var app=new Vue({
+        el:"#app",
+    })
+</script>
+</body>
+</html>
